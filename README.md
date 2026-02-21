@@ -6,19 +6,19 @@ Workout Tracker เป็นเว็บไซต์สำหรับบัน�
 
 # Technologies Used 🚀
 
-Python
+- Python
 
-Flask
+- Flask
 
-Flask-SQLAlchemy
+- Flask-SQLAlchemy
 
-SQLite
+- SQLite
 
-Bootstrap 5
+- Bootstrap 5
 
-HTML / CSS
+- HTML / CSS
 
-Git (Commit Early & Commit Often)
+- Git (Commit Early & Commit Often)
 
 # Features ✨
 
