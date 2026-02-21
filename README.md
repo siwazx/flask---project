@@ -20,22 +20,22 @@ HTML / CSS
 
 Git (Commit Early & Commit Often)
 
-✨ Features
+# Features ✨
 
-🔐 User Registration
+- User Registration
 
-🔑 User Login / Logout
+- User Login / Logout
 
-➕ Add Workout
+- Add Workout
 
-✏️ Edit Workout
+- Edit Workout
 
-❌ Delete Workout
+- Delete Workout
 
-📋 View All Workouts
+- View All Workouts
 
-📊 View Statistics (Total Calories & Duration)
+- View Statistics (Total Calories & Duration)
 
-🎨 Responsive UI with Bootstrap
+- Responsive UI with Bootstrap
 
-🗄 Data stored in SQLite Database
+- Data stored in SQLite Database
