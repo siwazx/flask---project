@@ -16,3 +16,8 @@ Flask-SQLAlchemy
 
 SQLite
 
+Bootstrap 5
+
+HTML / CSS
+
+Git (Commit Early & Commit Often)
