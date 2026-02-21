@@ -1,4 +1,4 @@
-🏋️# Workout Tracker Website
+# Workout Tracker Website🏋️
 
 📌 Project Overview
 
