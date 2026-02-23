@@ -13,4 +13,6 @@ class Workout(db.Model):
     duration = db.Column(db.Integer)
     calories = db.Column(db.Integer)
     date = db.Column(db.String(100))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+    
+print()
