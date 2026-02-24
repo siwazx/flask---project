@@ -7,8 +7,14 @@
     <h1>เมนูอาหาร</h1>
 
     {% for menu in menus %}
-        <p>{{ menu.name }} - {{ menu.price }} บาท</p>
+        <p>
+            {{ menu.name }} - {{ menu.price }} บาท
+            <a href="/order/{{ menu.id }}">สั่งอาหาร</a>
+        </p>
     {% endfor %}
+
+    <hr>
+    <a href="/orders">ดูรายการสั่งทั้งหมด</a>
 
 </body>
 </html>

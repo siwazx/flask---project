@@ -48,3 +48,16 @@ def add_menu():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
+@app.route("/order/<int:menu_id>")
+def order(menu_id):
+    new_order = Order(menu_id=menu_id, quantity=1)
+    db.session.add(new_order)
+    db.session.commit()
+
+    return redirect("/")
+
+@app.route("/orders")
+def show_orders():
+    orders = Order.query.all()
+    return render_template("orders.html", orders=orders)
