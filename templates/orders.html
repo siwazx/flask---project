@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>รายการสั่งอาหาร</title>
+</head>
+<body>
+    <h1>รายการสั่งอาหาร</h1>
+
+    {% for order in orders %}
+        <p>{{ order.menu.name }} - {{ order.menu.price }} บาท | จำนวน: {{ order.quantity }}</p>
+    {% endfor %}
+
+    <a href="/">กลับหน้าแรก</a>
+</body>
+</html>
