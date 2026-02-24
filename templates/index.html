@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ร้านอาหารของฉัน</title>
+</head>
+<body>
+    <h1>เมนูอาหาร</h1>
+
+    {% for menu in menus %}
+        <p>{{ menu.name }} - {{ menu.price }} บาท</p>
+    {% endfor %}
+
+</body>
+</html>
