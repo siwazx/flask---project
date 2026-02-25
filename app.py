@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, redirect
 from models import db, Menu, Order
 
 app = Flask(__name__)
@@ -10,29 +10,38 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
-    
+
+
+# ----------------------
+# หน้าแรก แสดงเมนู
+# ----------------------
 @app.route("/")
 def home():
     menus = Menu.query.all()
     return render_template("index.html", menus=menus)
 
+
+# ----------------------
+# เพิ่มเมนู (กดครั้งเดียวพอ!)
+# ----------------------
 @app.route("/add")
 def add_menu():
 
+    # เช็คก่อนว่ามีข้อมูลแล้วหรือยัง
+    if Menu.query.first():
+        return "มีเมนูอยู่แล้ว ไม่ต้องเพิ่มซ้ำ"
+
     menus = [
-        # ข้าวผัด
         Menu(name="ข้าวผัดหมู", price=50),
         Menu(name="ข้าวผัดไก่", price=50),
         Menu(name="ข้าวผัดทะเล", price=60),
         Menu(name="ข้าวผัดหมูกรอบ", price=60),
 
-        # กระเพรา
         Menu(name="กระเพราหมู", price=50),
         Menu(name="กระเพราไก่", price=50),
         Menu(name="กระเพราทะเล", price=60),
         Menu(name="กระเพราหมูกรอบ", price=60),
 
-        # เครื่องแกง
         Menu(name="เครื่องแกงหมู", price=55),
         Menu(name="เครื่องแกงไก่", price=55),
         Menu(name="เครื่องแกงทะเล", price=65),
@@ -43,12 +52,12 @@ def add_menu():
         db.session.add(menu)
 
     db.session.commit()
-
     return "เพิ่มเมนูเรียบร้อยแล้ว"
 
-if __name__ == "__main__":
-    app.run(debug=True)
-    
+
+# ----------------------
+# สั่งอาหาร
+# ----------------------
 @app.route("/order/<int:menu_id>")
 def order(menu_id):
     new_order = Order(menu_id=menu_id, quantity=1)
@@ -57,7 +66,23 @@ def order(menu_id):
 
     return redirect("/")
 
+
+# ----------------------
+# ดูรายการที่สั่ง
+# ----------------------
 @app.route("/orders")
 def show_orders():
     orders = Order.query.all()
-    return render_template("orders.html", orders=orders)
+
+    total_price = 0
+    for order in orders:
+        total_price += order.menu.price * order.quantity
+
+    return render_template("orders.html", orders=orders, total_price=total_price)
+
+
+# ----------------------
+# รันแอป
+# ----------------------
+if __name__ == "__main__":
+    app.run(debug=True)

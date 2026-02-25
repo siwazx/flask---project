@@ -11,3 +11,5 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'))
     quantity = db.Column(db.Integer)
+
+    menu = db.relationship('Menu')
