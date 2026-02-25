@@ -13,3 +13,20 @@
     <a href="/">กลับหน้าแรก</a>
 </body>
 </html>
+<h2>รายการที่สั่ง</h2>
+
+<ul>
+    {% for order in orders %}
+        <li>
+            {{ order.menu.name }} 
+            x {{ order.quantity }} 
+            = {{ order.menu.price * order.quantity }} บาท
+        </li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>ยอดรวมทั้งหมด: {{ total_price }} บาท</h3>
+
+<a href="/">← กลับหน้าเมนู</a>
