@@ -137,6 +137,8 @@ def checkout():
     for order in orders:
         total_price += order.menu.price * order.quantity
 
+    print("TOTAL:", total_price)
+
     if total_price > 0:
         history = OrderHistory(total_price=total_price)
         db.session.add(history)
@@ -146,6 +148,8 @@ def checkout():
 
     db.session.commit()
 
+    print("HISTORY AFTER SAVE:", OrderHistory.query.all())
+
     return render_template("success.html",
                            total_price=total_price)
 
@@ -153,12 +157,11 @@ def checkout():
 # ----------------------
 # ดูประวัติยอดขาย
 # ----------------------
+
 @app.route("/history")
 def history():
-    histories = OrderHistory.query.order_by(
-        OrderHistory.created_at.desc()
-    ).all()
-
+    histories = OrderHistory.query.all()
+    print("HISTORY:", histories)
     return render_template("history.html",
                            histories=histories)
 
