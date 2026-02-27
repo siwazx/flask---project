@@ -60,8 +60,16 @@ def add_menu():
 # ----------------------
 @app.route("/order/<int:menu_id>")
 def order(menu_id):
-    new_order = Order(menu_id=menu_id, quantity=1)
-    db.session.add(new_order)
+
+    # เช็คก่อนว่ามีเมนูนี้ใน Order แล้วหรือยัง
+    existing_order = Order.query.filter_by(menu_id=menu_id).first()
+
+    if existing_order:
+        existing_order.quantity += 1
+    else:
+        new_order = Order(menu_id=menu_id, quantity=1)
+        db.session.add(new_order)
+
     db.session.commit()
 
     return redirect("/")
@@ -87,6 +95,31 @@ def show_orders():
 def delete_order(order_id):
     order = Order.query.get_or_404(order_id)
     db.session.delete(order)
+    db.session.commit()
+    return redirect("/orders")
+
+# ----------------------
+# เพิ่มจำนวน
+# ----------------------
+@app.route("/increase/<int:order_id>")
+def increase(order_id):
+    order = Order.query.get_or_404(order_id)
+    order.quantity += 1
+    db.session.commit()
+    return redirect("/orders")
+
+# ----------------------
+# ลดจำนวน
+# ----------------------
+@app.route("/decrease/<int:order_id>")
+def decrease(order_id):
+    order = Order.query.get_or_404(order_id)
+
+    if order.quantity > 1:
+        order.quantity -= 1
+    else:
+        db.session.delete(order)
+
     db.session.commit()
     return redirect("/orders")
 
