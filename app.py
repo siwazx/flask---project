@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect
-from models import db, Menu, Order
+from models import db, Menu, Order, OrderHistory
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -22,14 +22,13 @@ def home():
 
 
 # ----------------------
-# เพิ่มเมนู (กดครั้งเดียวพอ!)
+# เพิ่มเมนู (กดครั้งเดียว)
 # ----------------------
 @app.route("/add")
 def add_menu():
 
-    # เช็คก่อนว่ามีข้อมูลแล้วหรือยัง
     if Menu.query.first():
-        return "มีเมนูอยู่แล้ว ไม่ต้องเพิ่มซ้ำ"
+        return "มีเมนูอยู่แล้ว"
 
     menus = [
         Menu(name="ข้าวผัดหมู", price=50),
@@ -56,12 +55,11 @@ def add_menu():
 
 
 # ----------------------
-# สั่งอาหาร
+# สั่งอาหาร (เพิ่มจำนวนอัตโนมัติ)
 # ----------------------
 @app.route("/order/<int:menu_id>")
 def order(menu_id):
 
-    # เช็คก่อนว่ามีเมนูนี้ใน Order แล้วหรือยัง
     existing_order = Order.query.filter_by(menu_id=menu_id).first()
 
     if existing_order:
@@ -71,12 +69,11 @@ def order(menu_id):
         db.session.add(new_order)
 
     db.session.commit()
-
     return redirect("/")
 
 
 # ----------------------
-# ดูรายการที่สั่ง
+# ดูตะกร้า
 # ----------------------
 @app.route("/orders")
 def show_orders():
@@ -86,10 +83,13 @@ def show_orders():
     for order in orders:
         total_price += order.menu.price * order.quantity
 
-    return render_template("orders.html", orders=orders, total_price=total_price)
+    return render_template("orders.html",
+                           orders=orders,
+                           total_price=total_price)
+
 
 # ----------------------
-# ลบรายการที่สั่ง
+# ลบรายการ
 # ----------------------
 @app.route("/delete_order/<int:order_id>")
 def delete_order(order_id):
@@ -97,6 +97,7 @@ def delete_order(order_id):
     db.session.delete(order)
     db.session.commit()
     return redirect("/orders")
+
 
 # ----------------------
 # เพิ่มจำนวน
@@ -107,6 +108,7 @@ def increase(order_id):
     order.quantity += 1
     db.session.commit()
     return redirect("/orders")
+
 
 # ----------------------
 # ลดจำนวน
@@ -123,29 +125,46 @@ def decrease(order_id):
     db.session.commit()
     return redirect("/orders")
 
+
 # ----------------------
-# ยืนยันการสั่งซื้อ
+# Checkout + บันทึกประวัติ
 # ----------------------
 @app.route("/checkout")
 def checkout():
     orders = Order.query.all()
+
+    total_price = 0
+    for order in orders:
+        total_price += order.menu.price * order.quantity
+
+    if total_price > 0:
+        history = OrderHistory(total_price=total_price)
+        db.session.add(history)
 
     for order in orders:
         db.session.delete(order)
 
     db.session.commit()
 
-    return render_template("success.html")
+    return render_template("success.html",
+                           total_price=total_price)
+
 
 # ----------------------
-# รันแอป
+# ดูประวัติยอดขาย
+# ----------------------
+@app.route("/history")
+def history():
+    histories = OrderHistory.query.order_by(
+        OrderHistory.created_at.desc()
+    ).all()
+
+    return render_template("history.html",
+                           histories=histories)
+
+
+# ----------------------
+# Run App
 # ----------------------
 if __name__ == "__main__":
     app.run(debug=True)
-    
-from datetime import datetime
-
-class OrderHistory(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    total_price = db.Column(db.Integer)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
