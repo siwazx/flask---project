@@ -124,6 +124,20 @@ def decrease(order_id):
     return redirect("/orders")
 
 # ----------------------
+# ยืนยันการสั่งซื้อ
+# ----------------------
+@app.route("/checkout")
+def checkout():
+    orders = Order.query.all()
+
+    for order in orders:
+        db.session.delete(order)
+
+    db.session.commit()
+
+    return render_template("success.html")
+
+# ----------------------
 # รันแอป
 # ----------------------
 if __name__ == "__main__":

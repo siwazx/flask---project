@@ -18,8 +18,12 @@
 <ul>
     {% for order in orders %}
         <li>
-            {{ order.menu.name }} 
-            x {{ order.quantity }} 
+            {{ order.menu.name }}
+
+            <a href="/decrease/{{ order.id }}">➖</a>
+            {{ order.quantity }}
+            <a href="/increase/{{ order.id }}">➕</a>
+
             = {{ order.menu.price * order.quantity }} บาท
 
             <a href="/delete_order/{{ order.id }}">❌ ลบ</a>
@@ -30,5 +34,6 @@
 <hr>
 
 <h3>ยอดรวมทั้งหมด: {{ total_price }} บาท</h3>
+<a href="/checkout">✅ ยืนยันการสั่งซื้อ</a>
 
 <a href="/">← กลับหน้าเมนู</a>
