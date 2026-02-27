@@ -142,3 +142,10 @@ def checkout():
 # ----------------------
 if __name__ == "__main__":
     app.run(debug=True)
+    
+from datetime import datetime
+
+class OrderHistory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    total_price = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
