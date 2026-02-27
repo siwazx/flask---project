@@ -21,6 +21,8 @@
             {{ order.menu.name }} 
             x {{ order.quantity }} 
             = {{ order.menu.price * order.quantity }} บาท
+
+            <a href="/delete_order/{{ order.id }}">❌ ลบ</a>
         </li>
     {% endfor %}
 </ul>

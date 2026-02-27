@@ -80,6 +80,15 @@ def show_orders():
 
     return render_template("orders.html", orders=orders, total_price=total_price)
 
+# ----------------------
+# ลบรายการที่สั่ง
+# ----------------------
+@app.route("/delete_order/<int:order_id>")
+def delete_order(order_id):
+    order = Order.query.get_or_404(order_id)
+    db.session.delete(order)
+    db.session.commit()
+    return redirect("/orders")
 
 # ----------------------
 # รันแอป
