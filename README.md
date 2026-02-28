@@ -1,41 +1,36 @@
-# Workout Tracker Website🏋️
+# 🍔 Food Ordering Website (Flask Project)
 
-📌 Project Overview
+## 📌 Project Description
+This project is a web-based food ordering system developed using **Flask (Python)**.  
+Users can browse menu items, add products to cart, checkout, and view order history.  
+The system stores order data in a SQLite database.
 
-Workout Tracker เป็นเว็บไซต์สำหรับบันทึกการออกกำลังกายรายวัน พัฒนาด้วย Flask โดยผู้ใช้สามารถสมัครสมาชิก เข้าสู่ระบบ เพิ่ม แก้ไข ลบ และดูสถิติการออกกำลังกายของตนเองได้ ระบบมีการบันทึกข้อมูลลงฐานข้อมูล SQLite และออกแบบหน้าตาด้วย Bootstrap CSS Framework
+This project was created as part of a Web Development assignment.
 
-# Technologies Used 🚀
+---
 
-- Python
+## 🚀 Features
 
+- View food menu
+- Add items to cart
+- Calculate total price automatically
+- Checkout and save order history
+- View past purchase history
+- Admin can add or delete menu items
+- Database integration using SQLite
+
+---
+
+## 🛠 Technologies Used
+
+- Python 3
 - Flask
-
 - Flask-SQLAlchemy
-
 - SQLite
-
-- Bootstrap 5
-
+- Bootstrap 5 (CSS Framework)
 - HTML / CSS
 
-- Git (Commit Early & Commit Often)
+---
 
-# Features ✨
+## 📂 Project Structure
 
-- User Registration
-
-- User Login / Logout
-
-- Add Workout
-
-- Edit Workout
-
-- Delete Workout
-
-- View All Workouts
-
-- View Statistics (Total Calories & Duration)
-
-- Responsive UI with Bootstrap
-
-- Data stored in SQLite Database
