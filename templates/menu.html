@@ -1,0 +1,9 @@
+<h2>Menu</h2>
+
+<ul>
+    {% for m in menus %}
+        <li>{{ m.name }} - {{ m.price }} บาท</li>
+    {% endfor %}
+</ul>
+
+<a href="/">Back</a>
