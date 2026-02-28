@@ -209,3 +209,16 @@ def add_menu():
         return redirect("/admin")
 
     return render_template("add_menu.html")
+
+@app.route("/edit-menu/<int:id>", methods=["GET", "POST"])
+def edit_menu(id):
+    menu = Menu.query.get(id)
+
+    if request.method == "POST":
+        menu.name = request.form["name"]
+        menu.price = request.form["price"]
+
+        db.session.commit()
+        return redirect("/admin")
+
+    return render_template("edit_menu.html", menu=menu)
