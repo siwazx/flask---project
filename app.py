@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, request, redirect
 from models import db, Menu, Order, OrderHistory
 
 app = Flask(__name__)
@@ -160,8 +160,10 @@ def checkout():
 
 @app.route("/history")
 def history():
-    histories = OrderHistory.query.all()
-    print("HISTORY:", histories)
+    histories = OrderHistory.query.order_by(
+        OrderHistory.created_at.desc()
+    ).all()
+
     return render_template("history.html",
                            histories=histories)
 
@@ -171,3 +173,39 @@ def history():
 # ----------------------
 if __name__ == "__main__":
     app.run(debug=True)
+    
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
+@app.route("/menu")
+def menu():
+    menus = Menu.query.all()
+    return render_template("menu.html", menus=menus)
+
+
+@app.route("/admin")
+def admin():
+    menus = Menu.query.all()
+    return render_template("admin.html", menus=menus)
+
+
+@app.route("/add-menu", methods=["GET", "POST"])
+def add_menu():
+    if  request.method == "POST":
+        name = request.form["name"]
+        price = request.form["price"]
+
+        new_menu = Menu(name=name, price=price)
+        db.session.add(new_menu)
+        db.session.commit()
+
+        return redirect("/admin")
+
+    return render_template("add_menu.html")
