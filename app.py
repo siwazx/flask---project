@@ -15,9 +15,9 @@ with app.app_context():
 # หน้าแรก
 # ----------------------
 @app.route("/")
+@app.route("/")
 def home():
-    menus = Menu.query.all()
-    return render_template("index.html", menus=menus)
+    return render_template("welcome.html")
 
 # ----------------------
 # เพิ่มเมนูเริ่มต้น (seed)
