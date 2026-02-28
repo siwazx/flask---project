@@ -30,8 +30,9 @@ def seed_data():
 
     menus = [
         Menu(name="ข้าวผัดหมู", price=50),
-        Menu(name="กระเพราหมู", price=50),
+        Menu(name="กระเพราหมูกรอบ", price=50),
         Menu(name="เครื่องแกงหมู", price=55),
+        Menu(name="แกงส้มปลากระพง", price=100),
     ]
 
     db.session.add_all(menus)
