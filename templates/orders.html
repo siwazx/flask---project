@@ -4,36 +4,41 @@
     <title>รายการสั่งอาหาร</title>
 </head>
 <body>
-    <h1>รายการสั่งอาหาร</h1>
 
-    {% for order in orders %}
-        <p>{{ order.menu.name }} - {{ order.menu.price }} บาท | จำนวน: {{ order.quantity }}</p>
-    {% endfor %}
-
-    <a href="/">กลับหน้าแรก</a>
-</body>
-</html>
 <h2>รายการที่สั่ง</h2>
 
+{% if orders %}
 <ul>
     {% for order in orders %}
         <li>
             {{ order.menu.name }}
 
+            <!-- ปุ่มลด -->
             <a href="/decrease/{{ order.id }}">➖</a>
+
             {{ order.quantity }}
-            <a href="/increase/{{ order.id }}">➕</a>
+
+            <!-- ปุ่มเพิ่ม -->
+            <a href="/order/{{ order.menu.id }}">➕</a>
 
             = {{ order.menu.price * order.quantity }} บาท
 
+            <!-- ปุ่มลบ -->
             <a href="/delete_order/{{ order.id }}">❌ ลบ</a>
         </li>
     {% endfor %}
 </ul>
 
 <hr>
-
 <h3>ยอดรวมทั้งหมด: {{ total_price }} บาท</h3>
 <a href="/checkout">✅ ยืนยันการสั่งซื้อ</a>
 
+{% else %}
+<p>ยังไม่มีรายการสั่งอาหาร</p>
+{% endif %}
+
+<br>
 <a href="/">← กลับหน้าเมนู</a>
+
+</body>
+</html>

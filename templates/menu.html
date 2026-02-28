@@ -1,9 +1,27 @@
-<h2>Menu</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+</head>
+<body>
 
-<ul>
-    {% for m in menus %}
-        <li>{{ m.name }} - {{ m.price }} บาท</li>
+<h1>Menu List</h1>
+
+{% if menus %}
+    <ul>
+    {% for item in menus %}
+        <li>
+            {{ item.name }} - {{ item.price }} บาท
+            <a href="/order/{{ item.id }}">เพิ่ม</a>
+        </li>
     {% endfor %}
-</ul>
+    </ul>
+{% else %}
+    <p>ยังไม่มีเมนู</p>
+{% endif %}
 
-<a href="/">Back</a>
+<br>
+<a href="/orders">ไปที่ตะกร้า</a>
+
+</body>
+</html>
