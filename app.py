@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from models import db, Menu, Order, OrderHistory
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -49,9 +50,17 @@ def add_menu():
 
     for menu in menus:
         db.session.add(menu)
+    
 
     db.session.commit()
     return "เพิ่มเมนูเรียบร้อยแล้ว"
+
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    menu_id = db.Column(db.Integer, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    total_price = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 # ----------------------
@@ -209,6 +218,13 @@ def add_menu():
         return redirect("/admin")
 
     return render_template("add_menu.html")
+
+@app.route("/delete-menu/<int:id>")
+def delete_menu(id):
+    menu = Menu.query.get(id)
+    db.session.delete(menu)
+    db.session.commit()
+    return redirect("/admin")
 
 @app.route("/edit-menu/<int:id>", methods=["GET", "POST"])
 def edit_menu(id):

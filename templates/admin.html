@@ -1,9 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
 <h2>Admin Panel</h2>
 
-<a href="/add-menu">Add Menu</a>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
 
-<ul>
-    {% for m in menus %}
-        <li>{{ m.name }} - {{ m.price }} บาท</li>
+    {% for menu in menus %}
+    <tr>
+        <td>{{ menu.name }}</td>
+        <td>{{ menu.price }}</td>
+        <td>
+            <a href="/edit-menu/{{ menu.id }}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="/delete-menu/{{ menu.id }}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
+
+{% endblock %}
