@@ -103,21 +103,6 @@ Commit Often
 More than 50 commits
 Work completed across at least 10 days
 
-📸 Screenshots
-
-## Screenshots
-
-### หน้า Welcome
-![Welcome](screenshots/welcome.png)
-
-### หน้าเมนู
-![Menu](screenshots/menu.png)
-
-### หน้าตะกร้า
-![Cart](screenshots/cart.png)
-
-### หน้า Success
-![Success](screenshots/success.png)
 
 ```bash
 git clone <YOUR_GIT_URL>
