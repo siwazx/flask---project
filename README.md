@@ -1,4 +1,4 @@
-# 🍔 Food Ordering Website (Flask Project)
+# food ordering website
 
 ## 📌 Project Description
 โปรเจกต์นี้คือระบบสั่งอาหารออนไลน์ที่พัฒนาโดยใช้ Flask (Python)
