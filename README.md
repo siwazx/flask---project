@@ -72,22 +72,6 @@ flask-project/
 
 ### 1️⃣ Clone Repository
 
-```bash
-git clone <YOUR_GIT_URL>
-cd flask-project
-2️⃣ Create Virtual Environment (Optional but Recommended)
-python -m venv venv
-venv\Scripts\activate   # Windows
-3️⃣ Install Dependencies
-pip install flask flask_sqlalchemy
-4️⃣ Run the Application
-python app.py
-
-Then open your browser and go to:
-
-http://127.0.0.1:5000
-
-exit
 
 👨‍💻 Author
 
@@ -133,4 +117,19 @@ Work completed across at least 10 days
 ![Cart](screenshots/cart.png)
 
 ### หน้า Success
-![Cart](screenshots/success.png)
+![Success](screenshots/success.png)
+
+```bash
+git clone <YOUR_GIT_URL>
+cd flask-project
+2️⃣ Create Virtual Environment (Optional but Recommended)
+python -m venv venv
+venv\Scripts\activate   # Windows
+3️⃣ Install Dependencies
+pip install flask flask_sqlalchemy
+4️⃣ Run the Application
+python app.py
+
+Then open your browser and go to:
+
+http://127.0.0.1:5000
