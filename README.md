@@ -9,26 +9,39 @@
 
 ---
 
-## 🚀 Features
+✨ Features
 
-- View food menu
-- Add items to cart
-- Calculate total price automatically
-- Checkout and save order history
-- View past purchase history
-- Admin can add or delete menu items
-- Database integration using SQLite
+🏠 หน้า Welcome (Landing Page)
 
----
+🍛 แสดงเมนูอาหารทั้งหมด
 
-## 🛠 Technologies Used
+➕ เพิ่มสินค้าเข้าตะกร้า
 
-- Python 3
-- Flask
-- Flask-SQLAlchemy
-- SQLite
-- Bootstrap 5 (CSS Framework)
-- HTML / CSS
+➖ เพิ่ม/ลดจำนวนสินค้า
+
+🗑 ลบรายการอาหาร
+
+💳 Checkout และบันทึกประวัติ
+
+📜 ดูประวัติการสั่งซื้อย้อนหลัง
+
+🛠 ระบบ Admin (เพิ่ม/แก้ไข/ลบ เมนู)
+
+🎨 UI ธีมร้านอาหารไทย
+
+🛠 Tech Stack
+
+Python 3
+
+Flask
+
+SQLAlchemy
+
+SQLite
+
+Bootstrap 5
+
+HTML / CSS
 
 ---
 
