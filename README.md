@@ -112,11 +112,21 @@ Work completed across at least 10 days
 
 📸 Screenshots
 
-(Add screenshots of your website here)
+## Screenshots
 
-Example:
+### หน้า Welcome
+![Welcome](screenshots/welcome.png)
 
-![Homepage](screenshots/home.png)
+### หน้าเมนู
+![Menu](screenshots/menu.png)
+
+### หน้าตะกร้า
+![Cart](screenshots/cart.png)
+
+### หน้า Success
+![Cart](screenshots/success.png)
+
+
 👨‍💻 Author
 
 Student Name: (Siwakorn Sangkaew)
