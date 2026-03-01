@@ -86,6 +86,15 @@ python app.py
 Then open your browser and go to:
 
 http://127.0.0.1:5000
+
+exit
+
+👨‍💻 Author
+
+Student Name: (Siwakorn Sangkaew)
+Course: Web Development
+Year: 2026
+
 🗄 Database
 
 The project uses SQLite as the database.
@@ -125,10 +134,3 @@ Work completed across at least 10 days
 
 ### หน้า Success
 ![Cart](screenshots/success.png)
-
-
-👨‍💻 Author
-
-Student Name: (Siwakorn Sangkaew)
-Course: Web Development
-Year: 2026
