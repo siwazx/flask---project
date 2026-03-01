@@ -86,19 +86,19 @@ Tables are created using SQLAlchemy models inside app.py.
 
 Main tables:
 
-Menu
+• Menu
 
-Order
+• Order
 
-OrderHistory
+• OrderHistory
 
 📝 Git Workflow
 
-This project follows:
+• This project follows:
 
-Commit Early
+• Commit Early
 
-Commit Often
+• Commit Often
 
 More than 50 commits
 Work completed across at least 10 days
